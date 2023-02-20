@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   # ,skip: [:registrations,:passwords],controllers: {
   #   sessions: "admin/sessions"
   # }
+  namespace :admin do
+    resources :items,except:[:destroy]
+  end
 end
