@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row my-3">
+    <h3 class="bg-secondary text-white my-3 mx-auto mx-md-5 px-4 rounded">ジャンル編集</h2>
+  </div>
+  <div class="row">
+    <%= form_with model: @genre,url: admin_genre_path,method: :patch do |f| %>
+      <%= f.label :"ジャンル名" %>
+      <%= f.text_field :name,autofocus: true,placeholder:"ジャンル名" %>
+      <%= f.submit "変更を保存",class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

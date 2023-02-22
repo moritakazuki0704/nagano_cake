@@ -1,9 +1,9 @@
-<div>
-  <div>
-    <h2>商品一覧</h2>
+<div class="container">
+  <div class="row my-3">
+    <h3 class="bg-secondary text-white my-3 mx-auto mx-md-5 px-4 rounded">商品一覧</h2>
   </div>
-  <table>
-    <thead>
+  <table class="table">
+    <thead class="thead-light">
       <tr>
         <th>商品ID</th>
         <th>商品名</th>
@@ -19,10 +19,10 @@
           <th><%= item.name %></th>
           <th><%= item.price %></th>
           <th><%= item.genres.name %></th>
-          <th><%= item.is_active </th>
+          <th><%= item.is_active %> </th>
         </tr>
       <% end %>
-      <%= pagenate @orders %>
+      <%= paginate @items %>
     </tbody>
   </table>
 </div>
