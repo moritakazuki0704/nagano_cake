@@ -3,31 +3,35 @@
     <h3 class="bg-secondary text-white my-3 mx-auto mx-md-5 px-4 rounded">ジャンル編集</h3>
   </div>
   <div class="row">
-    <%= form_with model: Genre.new,url: admin_genres_path,method: :post do |f| %>
+    <%= form_with model: @genre,url: admin_genres_path,method: :post do |f| %>
       <%= f.label :"ジャンル名",class: "mr-3" %>
       <%= f.text_field :name,autofocus: true,placeholder:"ジャンル名",class: "mr-3" %>
       <%= f.submit "新規登録",class: "btn btn-success" %>
     <% end %>
   </div>
-  <table class="table mt-3">
+  <div class="row no-gutters mt-4">
+    <div class="col-4 ml-3">
+  <table class="table border">
     <thead class="thead-light">
       <tr>
-        <th>ジャンル名</th>
+        <th class="text-right">ジャンル名</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <% @genres.each do |genre| %>
       <tr>
-        <td>
+        <td class="align-middle">
           <%= genre.name %>
         </td>
-        <td>
-          <%= link_to "編集する", edit_admin_genre_path(genre.id),class: "btn btn-info" %>
+        <td class="text-right pr-4">
+          <%= link_to "編集する", edit_admin_genre_path(genre.id),class: "btn btn-success" %>
         </td>
       </tr>
       <% end %>
-      <%= paginate @genres %>
     </tbody>
   </table>
+  <%= paginate @genres %>
+  </div>
+  </div>
 </div>

@@ -7,6 +7,7 @@ class Admin::GenresController < ApplicationController
 
   def index
     @genres = Genre.page(params[:page])
+    @genre = Genre.new
   end
 
   def edit

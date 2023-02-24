@@ -4,8 +4,8 @@
   </div>
   <div class="row">
     <%= form_with model: @genre,url: admin_genre_path,method: :patch do |f| %>
-      <%= f.label :"ジャンル名" %>
-      <%= f.text_field :name,autofocus: true,placeholder:"ジャンル名" %>
+      <%= f.label :"ジャンル名",class: "mr-3" %>
+      <%= f.text_field :name,autofocus: true,placeholder:"ジャンル名",class: "mr-3" %>
       <%= f.submit "変更を保存",class: "btn btn-success" %>
     <% end %>
   </div>
