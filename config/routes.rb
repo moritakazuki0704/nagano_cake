@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
-  end
   devise_for :customers
   # ,skip: [:passwords],controllers: {
   #   registrations: "public/registrations",
@@ -22,5 +13,8 @@ Rails.application.routes.draw do
     resources :items,except:[:destroy]
     resources :genres,except:[:new,:show,:destroy]
     resources :customers,except:[:new,:create,:destroy]
+    get "orders/:id" => "orders#show",as: "order"
+    patch "orders/:id" => "orders#update_status",as: "update_status"
+    patch "order_datails/:id" => "orders#update_making_process",as: "update_making_process"
   end
 end
