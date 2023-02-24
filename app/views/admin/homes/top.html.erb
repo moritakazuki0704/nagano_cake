@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col justify-content-center shadow-sm">
+    <div class="col justify-content-center">
       <table class="table">
         <thead class="thead-light">
           <tr>
@@ -19,7 +19,7 @@
           <% @orders.each do |order| %>
             <tr>
               <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-              <td><%= order.customer_id.last_name %><%= order.customer_id.first_name %></td>
+              <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
               <td><%= order.order_details.amount.sum %></td>
               <td><%= order.status %></td>
             </tr>
