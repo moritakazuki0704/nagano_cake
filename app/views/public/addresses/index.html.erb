@@ -1,2 +1,64 @@
-<h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+<div class="container">
+  <div class="row my-3">
+    <h4 class="bg-secondary text-white my-3 mx-auto mx-md-5 px-4 rounded">配送先登録 / 一覧</h4>
+  </div>
+  <%= form_with model: @address,url: addresses_path,method: :post do |f| %>
+  <div class="row form-group">
+    <div class="col-3">
+      <%= f.label :"郵便番号(ハイフンなし)" %>
+    </div>
+    <div class="col-3">
+      <%= f.text_field :postal_code,autofocus: true,placeholder:"郵便番号",class: "form-control form-control-sm" %>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-3">
+      <%= f.label :"住所" %>
+    </div>
+    <div class="col-6">
+      <%= f.text_field :address,autofocus: true,placeholder:"住所",class: "form-control form-control-sm" %>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-3">
+      <%= f.label :"宛名" %>
+    </div>
+    <div class="col-3">
+      <%= f.text_field :name,autofocus: true,placeholder:"名前",class: "form-control form-control-sm" %>
+    </div>
+    <div class="col-2 offset-3">
+      <%= f.submit "新規登録",class: "btn btn-success" %>
+    </div>
+  </div>
+  <% end %>
+  <div class="row no-gutters mt-4">
+    <div class="col-9 mr-auto">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @addresses.each do |address| %>
+          <tr>
+            <td><%= address.postal_code %></td>
+            <td><%= address.address %></td>
+            <td><%= address.name %></td>
+            <td class="justify-content-around">
+              <span><%= link_to "編集する",edit_address_path(address.id),class: "btn btn-success" %></span>
+              <span>
+                <%= link_to "削除する",edit_address_path(address.id),method: :delete, "data-confirm" =>"本当によろしいですか？"class: "btn btn-danger" %>
+              </span>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @addresses %>
+    </div>
+  </div>
+</div>
