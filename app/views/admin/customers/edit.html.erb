@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col-4 my-3">
       <h4 class="bg-secondary text-white text-center m-3 px-3 rounded">
-        <%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集
+        <%= @customers.last_name %><%= @customers.first_name %>さんの会員情報編集
         </h4>
     </div>
   </div>
-  <%= form_with model: @customer,url: admin_customer_path(@customer.id),method: :patch do |f| %>
+  <%= form_with model: @customers,url: admin_customers_path(@customers.id),method: :patch do |f| %>
     <div class="card border-0">
       <div class="card-body">
-        <div class="row mt-2">
+        <div class="row form-group">
           <p class="card-text col-2">
             会員ID
           </p>
@@ -17,7 +17,7 @@
             <%= @customer.id %>
           </h5>
         </div>
-        <div class="row mt-2">
+        <div class="row form-group">
           <span class="card-text col-2">
             <%= f.label "氏名" ,class: "col-2 col-form-label" %>
           </span>
@@ -28,7 +28,7 @@
             <%= f.text_field :first_name,autofocus: true,placeholder: "名",class: "form-control" %>
           </span>
         </div>
-        <div class="row mt-2">
+        <div class="row form-group">
           <span class="card-text col-2">
             <%= f.label "フリガナ" ,class: "col-3 col-form-label" %>
           </span>
@@ -39,7 +39,7 @@
             <%= f.text_field :first_name_kana,autofocus: true,placeholder: "名カナ",class: "form-control" %>
           </span>
         </div>
-        <div class="row mt-2">
+        <div class="row form-group">
           <span class="card-text col-2">
             <%= f.label "郵便番号" ,class: "col-3 col-form-label" %>
           </span>
@@ -47,7 +47,7 @@
             <%= f.text_field :postal_code,autofocus: true,placeholder: "郵便番号",class: "form-control" %>
           </span>
         </div>
-        <div class="row">
+        <div class="row form-group">
           <span class="card-text col-2">
             <%= f.label "住所" ,class: "col-3 col-form-label" %>
           </span>
@@ -55,7 +55,7 @@
             <%= f.text_field :address,autofocus: true,placeholder: "住所",class: "form-control" %>
           </span>
         </div>
-        <div class="row mt-2">
+        <div class="row form-group">
           <span class="card-text col-2">
             <%= f.label "電話番号" ,class: "col-3 col-form-label" %>
           </span>
@@ -63,7 +63,7 @@
             <%= f.telephone_field :telephone_number,autofocus: true,placeholder: "電話番号",class: "form-control" %>
           </span>
         </div>
-        <div class="row mt-2">
+        <div class="row form-group">
           <span class="card-text col-2">
             <%= f.label "メールアドレス" ,class: "col-3 col-form-label" %>
           </span>
@@ -71,9 +71,9 @@
             <%= f.email_field :email,autofocus: true,placeholder: "メールアドレス",class: "form-control" %>
           </span>
         </div>
-        <div class="row">
+        <div class="row form-group">
           <span class="card-text col-2">
-            <%= f.label "フリガナ" ,class: "col-3 col-form-label" %>
+            <%= f.label "会員ステータス" ,class: "col-3 col-form-label" %>
           </span>
           <span class="card-text col-3">
             <%= f.radio_button :is_deleted, true, autofocus: true,class: "form-check form-check-inline" %>有効
@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div class="row justify-content-center mt-2">
+    <div class="row justify-content-center form-group">
       <%= f.submit "変更を保存",class: "btn btn-success btn-lg" %>
     </div>
   <% end %>

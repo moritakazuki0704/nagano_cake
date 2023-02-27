@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     scope :customers do
       get 'mypage' => 'customers#show',as: "mypage"
       get 'information/edit' => 'customers#edit',as: "edit_customers"
-      patch 'information' => 'customers#update'
+      patch 'information' => 'customers#update',as: "update_information"
       get 'confirm' => 'customers#confirm',as: "confirm_customers"
       patch 'withdraw' => 'customers#withdraw'
     end

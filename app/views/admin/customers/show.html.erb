@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-4 my-3">
       <h4 class="bg-secondary text-white text-center m-3 px-3 rounded">
-        <%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細
+        <%= @customers.last_name %><%= @customers.first_name %>さんの会員詳細
         </h4>
     </div>
   </div>
@@ -13,7 +13,7 @@
           会員ID
         </p>
         <h5 class="card-text col-10">
-          <%= @customer.id %>
+          <%= @customers.id %>
         </h5>
       </div>
       <div class="row mt-2">
@@ -21,10 +21,10 @@
           氏名
         </p>
         <h5 class="card-text col-5">
-          <%= @customer.last_name %>
+          <%= @customers.last_name %>
         </h5>
         <h5 class="card-text col-5">
-          <%= @customer.first_name %>
+          <%= @customers.first_name %>
         </h5>
       </div>
       <div class="row mt-2">
@@ -32,10 +32,10 @@
           フリガナ
         </p>
         <h5 class="card-text col-5">
-          <%= @customer.last_name_kana %>
+          <%= @customers.last_name_kana %>
         </h5>
         <h5 class="card-text col-5">
-          <%= @customer.first_name_kana %>
+          <%= @customers.first_name_kana %>
         </h5>
       </div>
       <div class="row mt-2">
@@ -43,7 +43,7 @@
           郵便番号
         </p>
         <h5 class="card-text col-10">
-          <%= @customer.postal_code %>
+          <%= @customers.postal_code %>
         </h5>
       </div>
       <div class="row">
@@ -51,7 +51,7 @@
           住所
         </p>
         <h5 class="card-text col-10">
-          <%= @customer.address %>
+          <%= @customers.address %>
         </h5>
       </div>
       <div class="row mt-2">
@@ -59,7 +59,7 @@
           電話番号
         </p>
         <h5 class="card-text col-10">
-          <%= @customer.telephone_number %>
+          <%= @customers.telephone_number %>
         </h5>
       </div>
       <div class="row mt-2">
@@ -67,7 +67,7 @@
           メールアドレス
         </p>
         <h5 class="card-text col-10">
-          <%= @customer.email %>
+          <%= @customers.email %>
         </h5>
       </div>
       <div class="row">
@@ -81,7 +81,7 @@
     </div>
   </div>
   <div class="row justify-content-center">
-    <%= link_to "編集する",edit_admin_customer_path(@customer.id),class: "btn btn-info btn-lg px-5" %>
-    <%= link_to "注文一覧を見る",admin_roopath,class: "btn btn-primary btn-lg px-5" %>
+    <%= link_to "編集する",edit_admin_customers_path(@customers.id),class: "btn btn-info btn-lg px-5" %>
+    <%= link_to "注文一覧を見る",admin_root_path,class: "btn btn-primary btn-lg px-5" %>
   </div>
 </div>

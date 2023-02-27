@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-4 my-3">
       <h4 class="bg-secondary text-white text-center m-3 px-3 rounded">
-        <%= @order.customer.last_name %><%= @order.customer.first_name %>さんの会員詳細
+        <%= @order.customers.last_name %><%= @order.customers.first_name %>さんの会員詳細
         </h4>
     </div>
   </div>
@@ -10,7 +10,7 @@
     <ul class="list-group list-group-horizontal border-0">
       <li class="list-group-item font-weight-bold">購入者</li>
       <li class="list-group-item">
-        <%= @order.customer.last_name %> <%= @order.customer.first_name %>
+        <%= @order.customers.last_name %> <%= @order.customers.first_name %>
       </li>
     </ul>
     <ul class="list-group list-group-horizontal border-0">

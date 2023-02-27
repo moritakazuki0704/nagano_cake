@@ -16,16 +16,16 @@
           </tr>
         </thead>
         <tbody>
-          <% @customers.each do |customer| %>
+          <% @customers.each do |customers| %>
             <tr>
-              <th><%= customer.id %></th>
+              <th><%= customers.id %></th>
               <th>
-                <%= link_to admin_customer_path(customer.id) do %>
-                  <%= customer.name %>
+                <%= link_to admin_customers_path(customers.id) do %>
+                  <%= customers.name %>
                 <% end %>
               </th>
-              <th><%= customer.email %></th>
-              <th><%= customer.is_deleted %> </th>
+              <th><%= customers.email %></th>
+              <th><%= customers.is_deleted %> </th>
             </tr>
           <% end %>
         </tbody>
