@@ -1,7 +1,7 @@
 class Admin::GenresController < ApplicationController
-  
-  before_action :authenticate_user!
-  
+
+  before_action :authenticate_admin!
+
   def create
     @genre = Genre.new(genre_params)
     @genre.save

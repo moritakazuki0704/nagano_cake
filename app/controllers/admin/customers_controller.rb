@@ -1,21 +1,19 @@
 class Admin::CustomersController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_admin!
+  before_action :set_customers,except:[:index]
 
   def index
     @customers = Customer.page(params[:page])
   end
 
   def show
-    @customers = Customer.find(params[:id])
   end
 
   def edit
-    @customers = Customer.find(params[:id])
   end
 
   def update
-    @customers = Customer.find(params[:id])
     @customer.update(customer_params)
     redirect_to admin_customer_path(@customer.id)
   end
@@ -24,6 +22,9 @@ class Admin::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:last_name,:first_name,:last_name_kana,:first_name_kana,:postal_code,:email,:address,:telephone_number,:is_deleted)
+  end
+  def set_customers
+    @customers = Customer.find(params[:id])
   end
 end
 
