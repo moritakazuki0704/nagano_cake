@@ -10,7 +10,105 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-light">
+    <header class="bg-info">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <%= link_to 'ながのCAKE',root_path,class: 'h3 p-2 m-3 text-white' %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavdropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to(mypage_path,class: "nav-link text-white") do %>
+                   <i class="fas fa-home"></i>
+                   <span>マイページ</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to(items_path,class: "nav-link text-white") do %>
+                   <i class="fas fa-users"></i>
+                   <span>商品一覧</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to(cart_items_path,class: "nav-link text-white") do %>
+                   <i class="fas fa-book-open"></i>
+                   <span>カート</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to(destroy_customer_session_path,method: :delete,class: "nav-link text-white") do %>
+                   <i class="fas fa-sign-out-alt"></i>
+                   <span>ログアウト</span>
+                  <% end %>
+                </li>
+              <% elsif admin_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to(admin_items_path,class: "nav-link text-white") do %>
+                   <i class="fas fa-home"></i>
+                   <span>商品一覧</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to(users_path,class: "nav-link text-white") do %>
+                   <i class="fas fa-users"></i>
+                   <span>会員一覧</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to(admin_customers_path,class: "nav-link text-white") do %>
+                   <i class="fas fa-book-open"></i>
+                   <span>注文履歴一覧</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to(admin_genres_path,class: "nav-link text-white") do %>
+                   <i class="fas fa-book-open"></i>
+                   <span>ジャンル一覧</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to(destroy_admin_session_path,method: :delete,class: "nav-link text-white") do %>
+                   <i class="fas fa-sign-out-alt"></i>
+                   <span>ログアウト</span>
+                  <% end %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to(about_path,class: "nav-link text-white") do %>
+                   <i class="fas fa-home"></i>
+                   <span>About</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to(items_path,class: "nav-link text-white") do %>
+                   <i class="fas fa-link"></i>
+                   <span>商品一覧</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to(new_customer_registration_path,class: "nav-link text-white") do %>
+                   <i class="fas fa-user-plus"></i>
+                   <span>新規登録</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to(new_customer_session_path,class: "nav-link text-white") do %>
+                   <i class="fas fa-sign-in-alt"></i>
+                   <span>ログイン</span>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main
   </body>
 </html>

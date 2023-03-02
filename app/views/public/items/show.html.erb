@@ -1,2 +1,32 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container">
+  <div class="card mt-5 py-5 border-0 bg-light">
+    <div class="row no-gutters justify-content-center mt-5">
+      <div class="col-md-4">
+        <%= image_tag @item.image,width: "100%", height: "100%" %>
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h3 class="card-title">
+            <%= @item.name %>
+          </h3>
+          <p class="card-text" style="height: 5rem;">
+            <%= safe_join(@item.introduction.split("\n"),tag(:br)) %>
+          </p>
+          <h5 class="card-text">
+            ¥<%= @item.with_tax_price %>（税込）
+          </h5>
+          <%= form_with model: @cart_item,url: cart_items_path,method: :post do |f| %>
+          <div class="row mt-4">
+          <span class="col align-self-center">
+            <%= f.select :amount, *[1..10] ,prompt: "個数選択",class: "form-control" %>
+          </span>
+          <span class="col align-self-center">
+            <%= f.submit "カートに入れる",class: "btn btn-success" %>
+          </span>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

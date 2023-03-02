@@ -1,5 +1,14 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+  <div class="row">
+    <div class="col-5 offset-1">
+      <span class="bg-secondary text-white text-center ml-5 px-3 rounded">すでに登録済みの方</span>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <span class="col-6">
+      <%= link_to "こちら", new_session_path(resource_name),class: "border-bottom" %>　からログインしてください。
+    </span>
+  </div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
