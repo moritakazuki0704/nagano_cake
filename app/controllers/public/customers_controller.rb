@@ -1,8 +1,7 @@
 class Public::CustomersController < ApplicationController
-  
-  before_action :current_customers
-  
-  
+
+  before_action :current_customer
+
   def show
   end
 
@@ -19,10 +18,10 @@ class Public::CustomersController < ApplicationController
     Customers.is_deleted = true
     redirect_to root_path
   end
-  
+
   private
-  
-  def current_customers
-    @customers = current_customers
+
+  def current_customer
+    @customer = current_customer
   end
 end
