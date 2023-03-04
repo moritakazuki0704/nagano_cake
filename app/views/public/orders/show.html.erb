@@ -1,2 +1,78 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-4 my-3">
+      <h4 class="bg-secondary text-white text-center m-3 px-3 rounded">注文履歴詳細</h4>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-8">
+      <strong>注文情報</strong>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="bg-secondary align-middle">注文日</td>
+            <td class="align-middle"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+          <tr>
+            <td class="bg-secondary align-middle">配送先</td>
+            <td class="align-middle">
+              〒<%= @order.postal_code %><br>
+              <%= @order.address %><br>
+              <%= @order.name %>
+            </td>
+          </tr>
+          <tr>
+            <td class="bg-secondary align-middle">支払方法</td>
+            <td class="align-middle"><%= @order.payment_method %></td>
+          </tr>
+          <tr>
+            <td class="bg-secondary align-middle">ステータス</td>
+            <td class="align-middle"><%= @order.status %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <strong>請求情報</strong>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="bg-secondary align-middle">商品合計</td>
+            <td class="align-middle"><%= @order.total_payment %></td>
+          </tr>
+          <tr>
+            <td class="bg-secondary align-middle">配送料</td>
+            <td class="align-middle"><%= @order.postage %></td>
+          </tr>
+          <tr>
+            <td class="bg-secondary align-middle">ご請求額</td>
+            <td class="align-middle"><%= @order.billing_total %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-10">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品</th>
+            <th>単価(税込)</th>
+            <th>個数</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_details.each do |order_detail| %>
+          <tr>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.price %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= order_detail.sub_total %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@
     <% @items.each do |item| %>
       <div class="card col-md-3 bg-light border-warning rounded shadow-sm p-4">
         <%= link_to item_path(item.id) do %>
-          <%= image_tag item.image,class: "card-img-top"; %>
+          <%= image_tag item.get_image(190,190),class: "card-img-top"; %>
         <% end %>
         <div class="card-body">
           <p class="card-title"><%= item.name %></p><br>
