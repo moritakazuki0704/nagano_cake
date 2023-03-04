@@ -49,7 +49,11 @@
               販売ステータス
             </p>
             <h5 class="card-text col-10">
-              <%= @item.is_active %>
+              <% if @item.is_active == true%>
+                  <p class="text-secondary">販売中</p>
+                <% else %>
+                  <p class="text-success">販売停止中</p>
+              <% end %>
             </h5>
           </div>
         </div>
