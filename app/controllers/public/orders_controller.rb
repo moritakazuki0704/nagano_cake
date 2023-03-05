@@ -10,7 +10,7 @@ class Public::OrdersController < ApplicationController
   def comfirm
     @cart_items = current_customer.cart_items
     @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.sub_total }
-    @order = current_customer.orders.new(order_params)
+    @order = Order.new(order_params)
 
     if params[:select_address] == "0"
       @order.postal_code = current_customer.postal_code
@@ -26,9 +26,34 @@ class Public::OrdersController < ApplicationController
       @order.address = params[:address]
       @order.name = params[:name]
     end
+
   end
 
   def create
+    @order = current_customer.orders.new(order_params)
+    @order.save
+
+    if params[:select_address] == "2"
+      @address_data = Address.new
+      @address_data.customer_id = current_customer.id
+      @address_data.postal_code = @order.postal_code
+      @address_data.address = @order.address
+      @address_data.name = @order.name
+      @address_data.save
+    end
+
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new
+      @order_detail.item_id = cart_item.id
+      @order_detail.order_id = @order.id
+      @order_detail.price = cart_item.item.price
+      @order_detail.amount = cart_item.amount
+      @order_detail.save
+    end
+    @cart_items.destroy_all
+
+    redirect_to complete_orders_path
   end
 
   def complete
@@ -46,6 +71,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-  params.require(:order).permit(:postage,:total_payment,:payment_method,:postal_code,:address,:name)
+    params.require(:order).permit(:postage,:total_payment,:payment_method,:postal_code,:address,:name)
   end
+
 end
