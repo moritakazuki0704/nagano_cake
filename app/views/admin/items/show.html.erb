@@ -4,10 +4,10 @@
       <h4 class="bg-secondary text-white text-center m-3 px-3 rounded">商品詳細</h4>
     </div>
   </div>
-  <div class="card border-0">
+  <div class="card border-0 bg-light">
     <div class="row no-gutters justify-content-center">
-      <div class="col-4">
-        <%= image_tag @item.image,size: "350x250" %>
+      <div class="col-4 align-self-center">
+        <%= image_tag @item.get_image(350,250) %>
       </div>
       <div class="col-8">
         <div class="card-body">
