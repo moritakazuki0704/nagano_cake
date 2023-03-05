@@ -1,2 +1,59 @@
-<h1>Public::Orders#comfirm</h1>
-<p>Find me in app/views/public/orders/comfirm.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-4 my-3">
+      <h4 class="bg-secondary text-white text-center m-3 px-3 rounded">注文情報確認</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+    <table class="table ">
+        <thead>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td><%= cart_item_item.get_image(100,100) %><%= cart_item.item.name %></td>
+              <td><%= cart_item.item.with_tax_price %></td>
+              <td><%= cart_item.amount %></td>
+              <td><%= cart_item.sub_total %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="bg-secondary align-middle">商品合計</td>
+            <td class="align-middle"><%= @order.total_payment %></td>
+          </tr>
+          <tr>
+            <td class="bg-secondary align-middle">配送料</td>
+            <td class="align-middle"><%= @order.postage %></td>
+          </tr>
+          <tr>
+            <td class="bg-secondary align-middle">ご請求額</td>
+            <td class="align-middle"><%= @order.billing_total %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <strong>支払方法</strong>
+        <%= @order.payment_method %>
+      </li>
+      <li class="list-group-item">
+        <strong>お届け先</strong>
+        <%= @order.address_display %><br>
+        <%= @order.name %>
+      </li>
+    </ul>
+  </div>

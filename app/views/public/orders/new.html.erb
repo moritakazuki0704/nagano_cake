@@ -4,4 +4,65 @@
       <h4 class="bg-secondary text-white text-center m-3 px-3 rounded">注文情報入力</h4>
     </div>
   </div>
-  <div class="row"></div>
+  <%= form_with model: @order, url: comfirm_orders_path, method: :post do |f| %>
+    <div class="row">
+      <strong>支払方法</strong>
+      <div class="custom-control custom-radio ml-1">
+        <%= f.radio_button :payment_method, Order.payment_methods.key(0), class: "custom-control-input" %>
+        <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card], class: "custom-control-label" %>
+      </div>
+      <div class="custom-control custom-radio ml-1">
+        <%= f.radio_button :payment_method, Order.payment_methods.key(1), class: "custom-control-label" %>
+        <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer], class: "custom-control-label" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="custom-control custom-radio ml-1">
+        <%= f.radio_button :select_address, "0" , class: "custom-control-input" %>
+        <%= f.label "ご自身の住所", class: "custom-control-label" %>
+        <div class="ml-2">
+          <%= current_customer.address_display %><br>
+          <%= current_customer.last_name %><%= current_customer.first_name %>
+        </div>
+      </div>
+      <div class="custom-control custom-radio ml-1">
+        <%= f.radio_button :select_address, "1" , class: "custom-control-input" %>
+        <%= f.label "登録済みの住所から選択", class: "custom-control-label" %>
+        <div class="ml-2">
+          <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display),class: "custom-select" %>
+        </div>
+      </div>
+      <div class="custom-control custom-radio ml-1">
+        <%= f.radio_button :select_address, "2" , class: "custom-control-input" %>
+        <%= f.label "新しいお届け先", class: "custom-control-label" %>
+        <div class="row form-group">
+          <div class="col-3">
+            <%= f.label :"郵便番号(ハイフンなし)" %>
+          </div>
+          <div class="col-3">
+            <%= f.text_field :postal_code,autofocus: true,placeholder:"郵便番号",class: "form-control form-control-sm" %>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-3">
+            <%= f.label :"住所" %>
+          </div>
+          <div class="col-6">
+            <%= f.text_field :address,autofocus: true,placeholder:"住所",class: "form-control form-control-sm" %>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-3">
+            <%= f.label :"宛名" %>
+          </div>
+          <div class="col-3">
+            <%= f.text_field :name,autofocus: true,placeholder:"名前",class: "form-control form-control-sm" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <%= f.submit "確認画面に進む", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

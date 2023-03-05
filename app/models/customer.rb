@@ -5,4 +5,9 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :addresses
   has_many :orders
+  
+  def address_display
+  '〒' + postal_code + ' ' + address
+  end
+  
 end

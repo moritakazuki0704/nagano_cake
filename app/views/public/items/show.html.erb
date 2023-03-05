@@ -15,16 +15,18 @@
           <h5 class="card-text">
             ¥<%= @item.with_tax_price %>（税込）
           </h5>
-          <%= form_with model: @cart_item,url: cart_items_path,method: :post do |f| %>
-          <div class="row mt-4">
-          <span class="col align-self-center">
-            <%= f.hidden_field :item_id, :value => @item.id %>
-            <%= f.select :amount, *[1..10] ,prompt: "個数選択",class: "form-control" %>
-          </span>
-          <span class="col align-self-center">
-            <%= f.submit "カートに入れる",class: "btn btn-success" %>
-          </span>
-          </div>
+          <% if customer_signed_in? %>
+            <%= form_with model: @cart_item,url: cart_items_path,method: :post do |f| %>
+              <div class="row mt-4">
+                <span class="col align-self-center">
+                  <%= f.hidden_field :item_id, :value => @item.id %>
+                  <%= f.select :amount, *[1..10] ,prompt: "個数選択",class: "form-control" %>
+                </span>
+                <span class="col align-self-center">
+                  <%= f.submit "カートに入れる",class: "btn btn-success" %>
+                </span>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
