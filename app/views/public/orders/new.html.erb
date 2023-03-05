@@ -29,7 +29,7 @@
         <%= f.radio_button :select_address, "1" , class: "custom-control-input" %>
         <%= f.label "登録済みの住所から選択", class: "custom-control-label" %>
         <div class="ml-2">
-          <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display),class: "custom-select" %>
+          <%= f.select :address_id, options_from_collection_for_select(@addresses, :id, :address_display),class: "custom-select" %>
         </div>
       </div>
       <div class="custom-control custom-radio ml-1">

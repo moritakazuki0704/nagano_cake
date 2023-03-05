@@ -4,14 +4,13 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @addresses = current_customer.addresses
   end
 
   def comfirm
     @cart_items = current_customer.cart_items
-    @order = Order.new(order_params)
-    @order.postage = "800"
-    @order.total_payment = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.sub_total }
-    @order.customer_id = current_customer.id
+    @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.sub_total }
+    @order = current_customer.orders.new(order_params)
 
     if params[:select_address] == "0"
       @order.postal_code = current_customer.postal_code
@@ -47,6 +46,6 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-  params.require(:order).permit(:payment_method, :postal_code, :address, :name)
+  params.require(:order).permit(:postage,:total_payment,:payment_method,:postal_code,:address,:name)
   end
 end
