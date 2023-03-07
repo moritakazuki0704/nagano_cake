@@ -1,54 +1,56 @@
 <div class="container">
   <div class="row">
-    <div class="col-4 my-3">
-      <h4 class="bg-secondary text-white text-center m-3 px-3 rounded">商品詳細</h4>
+    <div class="my-5">
+      <h4 class="bg-secondary text-white text-center ml-5 px-5 rounded">
+        商品詳細
+      </h4>
     </div>
   </div>
   <div class="card border-0 bg-light">
     <div class="row no-gutters justify-content-center">
-      <div class="col-4 align-self-center">
+      <div class="col-lg-4 col-md-5 align-self-center">
         <%= image_tag @item.get_image(350,250) %>
       </div>
-      <div class="col-8">
+      <div class="col-lg-8 col-md-6">
         <div class="card-body">
           <div class="row mt-2">
-            <p class="card-text col-2">
+            <p class="card-text col-lg-4 col-md-6">
               商品名
             </p>
-            <h5 class="card-text col-10">
+            <h5 class="card-text col-lg-8 col-md-6">
               <%= @item.name %>
             </h5>
           </div>
           <div class="row mt-2">
-            <p class="card-text col-2">
+            <p class="card-text col-lg-4 col-md-6">
               商品説明
             </p>
-            <h5 class="card-text col-10">
+            <h5 class="card-text col-lg-8 col-md-6">
               <%= safe_join(@item.introduction.split("\n"),tag(:br)) %>
             </h5>
           </div>
           <div class="row mt-2">
-            <p class="card-text col-2">
+            <p class="card-text col-lg-4 col-md-6">
               ジャンル
             </p>
-            <h5 class="card-text col-10">
+            <h5 class="card-text col-lg-8 col-md-6">
               <%= @item.genre.name %>
             </h5>
           </div>
           <div class="row mt-2">
-            <p class="card-text col-2">
+            <p class="card-text col-lg-4 col-md-6">
               税込価格(税抜価格)
             </p>
-            <h5 class="card-text col-10">
+            <h5 class="card-text col-lg-8 col-md-6">
               <%= @item.with_tax_price %>
               (<%= @item.price %>)
             </h5>
           </div>
           <div class="row">
-            <p class="card-text col-2">
+            <p class="card-text col-lg-4 col-md-6">
               販売ステータス
             </p>
-            <h5 class="card-text col-10">
+            <h5 class="card-text col-lg-8 col-md-6">
               <% if @item.is_active == true%>
                   <p class="text-secondary">販売中</p>
                 <% else %>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  # before_action :configure_sign_in_params, if: :devise_controller?, only: [:create]
   before_action :customer_state, only: [:create]
 
   # GET /resource/sign_in
@@ -25,7 +25,7 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  
+
   def customer_state
     @customer = Customer.find_by(email: params[:customer][:email])
     return if !@customer
@@ -33,13 +33,21 @@ class Public::SessionsController < Devise::SessionsController
       redirect_to new_customer_registration_path
     end
   end
-  
+
+  # def configure_sign_in_params
+  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:email,:last_name,:first_name,:last_name_kana,:first_name_kana,:postal_code,:address,:telephone_number,:is_deleted])
+  # end
+
+  def after_sign_up_path_for(resource)
+    mypage_path
+  end
+
   def after_sign_in_path_for(resource)
     admin_root_path
   end
-  
+
   def after_sign_out_path_for(resource)
     root_path
   end
-  
+
 end

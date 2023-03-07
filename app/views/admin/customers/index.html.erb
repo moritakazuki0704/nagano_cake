@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-4 m-4">
-      <h4 class="bg-secondary text-white text-center m-3 px-3 rounded">会員一覧</h4>
+    <div class="my-5">
+      <h4 class="bg-secondary text-white text-center ml-5 px-5 rounded">会員一覧</h4>
     </div>
   </div>
   <div class="row">
@@ -16,15 +16,15 @@
           </tr>
         </thead>
         <tbody>
-          <% @customers.each do |customers| %>
+          <% @customers.each do |customer| %>
             <tr>
-              <th><%= customers.id %></th>
+              <th><%= customer.id %></th>
               <th>
-                <%= link_to admin_customers_path(customers.id) do %>
-                  <%= customers.name %>
+                <%= link_to admin_customer_path(customer.id) do %>
+                  <%= customer.name %>
                 <% end %>
               </th>
-              <th><%= customers.email %></th>
+              <th><%= customer.email %></th>
               <th>
                 <% if customer.is_deleted == true %>
                   <p class="text-secondary">退会</p>
@@ -36,7 +36,9 @@
           <% end %>
         </tbody>
       </table>
-      <%= paginate @customers %>
     </div>
+  </div>
+  <div class="row justify-content-center">
+    <%= paginate @customers %>
   </div>
 </div>

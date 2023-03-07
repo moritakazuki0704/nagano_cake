@@ -1,91 +1,81 @@
 <div class="container">
   <div class="row">
-    <div class="col-4 my-3">
-      <h4 class="bg-secondary text-white text-center m-3 px-3 rounded">
-        <%= @customers.last_name %><%= @customers.first_name %>さんの会員詳細
-        </h4>
+    <div class="my-5">
+      <h4 class="bg-secondary text-white text-center ml-5 px-5 rounded">
+        <%= @customer.full_name %>さんの会員詳細
+      </h4>
     </div>
   </div>
-  <div class="card border-0">
-    <div class="card-body">
-      <div class="row mt-2">
-        <p class="card-text col-2">
-          会員ID
-        </p>
-        <h5 class="card-text col-10">
-          <%= @customers.id %>
-        </h5>
-      </div>
-      <div class="row mt-2">
-        <p class="card-text col-2">
-          氏名
-        </p>
-        <h5 class="card-text col-5">
-          <%= @customers.last_name %>
-        </h5>
-        <h5 class="card-text col-5">
-          <%= @customers.first_name %>
-        </h5>
-      </div>
-      <div class="row mt-2">
-        <p class="card-text col-2">
-          フリガナ
-        </p>
-        <h5 class="card-text col-5">
-          <%= @customers.last_name_kana %>
-        </h5>
-        <h5 class="card-text col-5">
-          <%= @customers.first_name_kana %>
-        </h5>
-      </div>
-      <div class="row mt-2">
-        <p class="card-text col-2">
-          郵便番号
-        </p>
-        <h5 class="card-text col-10">
-          <%= @customers.postal_code %>
-        </h5>
-      </div>
-      <div class="row">
-        <p class="card-text col-2">
-          住所
-        </p>
-        <h5 class="card-text col-10">
-          <%= @customers.address %>
-        </h5>
-      </div>
-      <div class="row mt-2">
-        <p class="card-text col-2">
-          電話番号
-        </p>
-        <h5 class="card-text col-10">
-          <%= @customers.telephone_number %>
-        </h5>
-      </div>
-      <div class="row mt-2">
-        <p class="card-text col-2">
-          メールアドレス
-        </p>
-        <h5 class="card-text col-10">
-          <%= @customers.email %>
-        </h5>
-      </div>
-      <div class="row">
-        <p class="card-text col-2">
-          会員ステータス
-        </p>
-        <h5 class="card-text col-10">
-          <% if @customer.is_deleted == true%>
-            <p class="text-secondary">退会</p>
-          <% else %>
-            <p class="text-success">有効</p>
-          <% end %>
-        </h5>
-      </div>
+    <div class="row justify-content-center mb-3">
+      <p class="col-lg-2">
+        会員ID
+      </p>
+      <h5 class="col-6">
+        <%= @customer.id %>
+      </h5>
     </div>
-  </div>
+    <div class="row justify-content-center mb-3">
+      <p class="col-2">
+        氏名
+      </p>
+      <h5 class="col-6">
+        <%= @customer.name %>
+      </h5>
+    </div>
+    <div class="row justify-content-center mb-3">
+      <p class="col-2">
+        フリガナ
+      </p>
+      <h5 class="col-6">
+        <%= @customer.name_kana %>
+      </h5>
+    </div>
+    <div class="row justify-content-center mb-3">
+      <p class="col-2">
+        郵便番号
+      </p>
+      <h5 class="col-6">
+        <%= @customer.postal_code %>
+      </h5>
+    </div>
+    <div class="row justify-content-center mb-3">
+      <p class="col-2">
+        住所
+      </p>
+      <h5 class="col-6">
+        <%= @customer.address %>
+      </h5>
+    </div>
+    <div class="row justify-content-center mb-3">
+      <p class="col-2">
+        電話番号
+      </p>
+      <h5 class="col-6">
+        <%= @customer.telephone_number %>
+      </h5>
+    </div>
+    <div class="row justify-content-center mb-3">
+      <p class="col-2">
+        メールアドレス
+      </p>
+      <h5 class="col-6">
+        <%= @customer.email %>
+      </h5>
+    </div>
+    <div class="row justify-content-center mb-3">
+      <p class="col-lg-2 col-md-4">
+        会員ステータス
+      </p>
+      <h5 class="col-6">
+        <% if @customer.is_deleted == true %>
+          <p class="text-secondary">退会</p>
+        <% else %>
+          <p class="text-success">有効</p>
+        <% end %>
+      </h5>
+    </div>
   <div class="row justify-content-center">
-    <%= link_to "編集する",edit_admin_customers_path(@customers.id),class: "btn btn-info btn-lg px-5" %>
-    <%= link_to "注文一覧を見る",admin_root_path,class: "btn btn-primary btn-lg px-5" %>
+    <%= link_to "編集する",edit_admin_customer_path(@customer.id),class: "btn btn-success px-5 mx-5" %>
+    <%= link_to "注文一覧を見る",admin_root_path,class: "btn btn-primary px-5 mx-5" %>
   </div>
 </div>

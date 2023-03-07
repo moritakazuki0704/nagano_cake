@@ -1,12 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-4 my-3">
-      <h4 class="bg-secondary text-white text-center m-3 px-3 rounded">商品新規登録</h4>
+    <div class="my-5">
+      <h4 class="bg-secondary text-white text-center ml-5 px-5 rounded">
+        商品新規登録
+      </h4>
     </div>
   </div>
   <%= form_with model: @item,url: admin_items_path, method: :post do |f| %>
     <div class="row no-gutters justify-content-center">
-      <div class="col-6 mx-2 px-0 mt-3 form-group" >
+      <div class="col-lg-8 col-sm-12 mx-2 px-0 mt-3 form-group" >
         <div class="mb-3 row">
           <%= f.label "商品画像" ,class: "col-3 col-form-label" %>
           <div class="col-9">
@@ -42,10 +44,10 @@
         </div>
         <div class="mb-3 row">
           <%= f.label "販売ステータス" ,class: "col-3 col-form-label" %>
-          <div class="col-4">
+          <div class="col-3">
             <%= f.radio_button :is_active, true, autofocus: true,class: "form-check form-check-inline" %>販売中
           </div>
-          <div class="col-5">
+          <div class="col-3">
             <%= f.radio_button :is_active, false, autofocus: true,class: "form-check form-check-inline" %>販売停止中
           </div>
         </div>
