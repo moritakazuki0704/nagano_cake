@@ -1,7 +1,9 @@
 <div class="container">
-  <div class="row">
-    <div class="my-5">
-      <h4 class="bg-secondary text-white text-center ml-5 px-5 rounded">会員一覧</h4>
+  <div class="row my-5">
+    <div class="col-auto">
+      <h4 class="bg-secondary text-white text-center ml-lg-5 px-5 rounded">
+        会員一覧
+      </h4>
     </div>
   </div>
   <div class="row">
@@ -26,10 +28,10 @@
               </th>
               <th><%= customer.email %></th>
               <th>
-                <% if customer.is_deleted == true %>
-                  <p class="text-secondary">退会</p>
-                <% else %>
+                <% if customer.is_deleted == false %>
                   <p class="text-success">有効</p>
+                <% else %>
+                  <p class="text-secondary">退会</p>
                 <% end %>
               </th>
             </tr>

@@ -1,64 +1,60 @@
 <div class="container">
-  <div class="row">
-    <div class="my-5">
-      <h4 class="bg-secondary text-white text-center ml-5 px-5 rounded">
+  <div class="row my-5">
+    <div class="col-auto">
+      <h4 class="bg-secondary text-white text-center ml-lg-5 px-5 rounded">
         商品詳細
       </h4>
     </div>
   </div>
-  <div class="card border-0 bg-light">
-    <div class="row no-gutters justify-content-center">
-      <div class="col-lg-4 col-md-5 align-self-center">
-        <%= image_tag @item.get_image(350,250) %>
+  <div class="row justify-content-center">
+    <div class="col-lg text-center mb-3">
+      <%= image_tag @item.get_image(350,350) %>
+    </div>
+    <div class="col-lg">
+      <div class="row justify-content-center mb-3">
+        <p class="col-md-4">
+          商品名
+        </p>
+        <h5 class="col-md-8">
+          <%= @item.name %>
+        </h5>
       </div>
-      <div class="col-lg-8 col-md-6">
-        <div class="card-body">
-          <div class="row mt-2">
-            <p class="card-text col-lg-4 col-md-6">
-              商品名
-            </p>
-            <h5 class="card-text col-lg-8 col-md-6">
-              <%= @item.name %>
-            </h5>
-          </div>
-          <div class="row mt-2">
-            <p class="card-text col-lg-4 col-md-6">
-              商品説明
-            </p>
-            <h5 class="card-text col-lg-8 col-md-6">
-              <%= safe_join(@item.introduction.split("\n"),tag(:br)) %>
-            </h5>
-          </div>
-          <div class="row mt-2">
-            <p class="card-text col-lg-4 col-md-6">
-              ジャンル
-            </p>
-            <h5 class="card-text col-lg-8 col-md-6">
-              <%= @item.genre.name %>
-            </h5>
-          </div>
-          <div class="row mt-2">
-            <p class="card-text col-lg-4 col-md-6">
-              税込価格(税抜価格)
-            </p>
-            <h5 class="card-text col-lg-8 col-md-6">
-              <%= @item.with_tax_price %>
-              (<%= @item.price %>)
-            </h5>
-          </div>
-          <div class="row">
-            <p class="card-text col-lg-4 col-md-6">
-              販売ステータス
-            </p>
-            <h5 class="card-text col-lg-8 col-md-6">
-              <% if @item.is_active == true%>
-                  <p class="text-secondary">販売中</p>
-                <% else %>
-                  <p class="text-success">販売停止中</p>
-              <% end %>
-            </h5>
-          </div>
-        </div>
+      <div class="row justify-content-center mb-3">
+        <p class="col-md-4">
+          商品説明
+        </p>
+        <h5 class="col-md-8">
+          <%= safe_join(@item.introduction.split("\n"),tag(:br)) %>
+        </h5>
+      </div>
+      <div class="row justify-content-center mb-3">
+        <p class="col-md-4">
+          ジャンル
+        </p>
+        <h5 class="col-md-8">
+          <%= @item.genre.name %>
+        </h5>
+      </div>
+      <div class="row justify-content-center mb-3">
+        <p class="col-md-4">
+          税込価格(税抜価格)
+        </p>
+        <h5 class="col-md-8">
+          <%= @item.with_tax_price %>
+          (<%= @item.price %>)
+        </h5>
+      </div>
+      <div class="row justify-content-center mb-3">
+        <p class="col-md-4">
+          販売ステータス
+        </p>
+        <h5 class="col-md-8">
+          <% if @item.is_active == true%>
+            <p class="text-success">販売中</p>
+          <% else %>
+            <p class="text-secondary">販売停止中</p>
+          <% end %>
+        </h5>
       </div>
     </div>
   </div>
@@ -66,3 +62,4 @@
     <%= link_to "編集する", edit_admin_item_path(@item.id),class: "btn btn-info btn-lg px-5" %>
   </div>
 </div>
+

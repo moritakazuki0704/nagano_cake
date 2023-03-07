@@ -1,17 +1,26 @@
 <div class="container">
-  <div class="row my-3">
-    <h4 class="bg-secondary text-white my-3 mx-auto mx-md-5 px-4 rounded">ジャンル一覧</h4>
+  <div class="row my-5">
+    <div class="col-auto">
+      <h4 class="bg-secondary text-white text-center ml-lg-5 px-5 rounded">
+      ジャンル一覧
+      </h4>
+    </div>
   </div>
-  <div class="row">
-    <%= form_with model: @genre,url: admin_genres_path,method: :post do |f| %>
-      <%= f.label :"ジャンル名",class: "mr-3" %>
-      <%= f.text_field :name,autofocus: true,placeholder:"ジャンル名",class: "mr-3" %>
-      <%= f.submit "新規登録",class: "btn btn-success" %>
-    <% end %>
-  </div>
+  <%= form_with model: @genre,url: admin_genres_path,method: :post do |f| %>
+    <div class="row align-items-center form-group">
+      <span class="col-md-auto col-sm-12 my-1">
+        <%= f.label :"ジャンル名",class: "form-label" %>
+      </span>
+      <span class="col-md-auto col-sm-12 my-1">
+        <%= f.text_field :name,autofocus: true,placeholder:"ジャンル名",class: "form-label" %>
+      </span>
+      <span class="col-md-auto col-sm-12 my-1">
+        <%= f.submit "新規登録",class: "btn btn-success px-5" %>
+      </span>
+    </div>
+  <% end %>
   <div class="row no-gutters mt-4">
-    <div class="col-lg-4 col-sm-6 ml-3">
-  <table class="table border">
+  <table class="table border col-lg-4 col-sm-6 ml-md-3">
     <thead class="thead-light">
       <tr>
         <th class="text-right">ジャンル名</th>
@@ -31,7 +40,8 @@
       <% end %>
     </tbody>
   </table>
-  <%= paginate @genres %>
   </div>
+  <div class="row justify-content-center">
+    <%= paginate @genres %>
   </div>
 </div>

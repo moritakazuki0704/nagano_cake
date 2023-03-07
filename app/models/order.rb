@@ -8,9 +8,8 @@ class Order < ApplicationRecord
   def billing_total
     (total_payment + postage)
   end
-  
+
   def address_display
   '〒' + postal_code + ' ' + address
   end
-  
 end

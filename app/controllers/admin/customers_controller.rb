@@ -4,7 +4,7 @@ class Admin::CustomersController < ApplicationController
   before_action :set_customers,except:[:index]
 
   def index
-    @customers = Customer.page(params[:page])
+    @customers = Customer.page(params[:page]).order(created_at: :desc)
   end
 
   def show
