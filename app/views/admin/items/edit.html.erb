@@ -11,7 +11,7 @@
       <span class="col-lg-2 col-md-4">
         <%= f.label "商品画像" ,class: "form-label" %>
       </span>
-      <span class="col-md-6 col-sm-4">
+      <span class="col-md-6">
         <%= f.file_field :image,accept: "image/*",class: "form-control-file" %>
       </span>
     </div>
@@ -19,7 +19,7 @@
       <span class="col-lg-2 col-md-4">
         <%= f.label "商品名" ,class: "form-label" %>
       </span>
-      <span class="col-md-6 col-sm-4">
+      <span class="col-md-6">
         <%= f.text_field :name,autofocus: true,placeholder: "商品名",class: "form-control" %>
       </span>
     </div>
@@ -27,7 +27,7 @@
       <span class="col-lg-2 col-md-4">
         <%= f.label "商品説明" ,class: "form-label" %>
       </span>
-      <span class="col-md-6 col-sm-4">
+      <span class="col-md-6">
         <%= f.text_area :introduction,autofocus: true,placeholder: "ここに説明文を記述します",rows: "6",class: "form-control" %>
       </span>
     </div>
@@ -35,7 +35,7 @@
       <span class="col-lg-2 col-md-4">
         <%= f.label "ジャンル" ,class: "form-label" %>
       </span>
-      <span class="col-md-6 col-sm-4">
+      <span class="col-md-6 ">
         <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name),prompt: "-- 選択してください --",class: "form-control " %>
       </span>
     </div>
@@ -43,7 +43,7 @@
       <span class="col-lg-2 col-md-4">
         <%= f.label "税抜価格" ,class: "form-label" %>
       </span>
-      <span class="col-md-6 col-sm-4 input-group">
+      <span class="col-md-6 input-group">
         <%= f.text_field :price,autofocus: true,placeholder: "1000",class: "form-control" %>
         <div class="input-group-append-sm">
           <span class="input-group-text">円</span>
@@ -54,10 +54,10 @@
       <span class="col-lg-2 col-md-4">
         <%= f.label "販売ステータス" ,class: "form-label" %>
       </span>
-      <span class="col-md-3 col-sm-2">
+      <span class="col-md-3 col-sm-6">
         <%= f.radio_button :is_active, true, autofocus: true,class: "form-check form-check-inline" %>販売中
       </span>
-      <span class="col-md-3 col-sm-2">
+      <span class="col-md-3 col-sm-6">
         <%= f.radio_button :is_active, false, autofocus: true,class: "form-check form-check-inline" %>販売停止中
       </span>
     </div>

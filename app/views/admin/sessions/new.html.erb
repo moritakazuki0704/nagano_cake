@@ -8,18 +8,18 @@
   </div>
   <%= form_with model: @admin,url: admin_session_path do |f| %>
     <div class="row form-group justify-content-center">
-      <span class="col-lg-2 col-md-3">
+      <span class="col-lg-3 col-md-4">
         <%= f.label "メールアドレス",class: "form-label" %>
       </span>
-      <span class="col-md-4 col-sm-6">
+      <span class="col-md-4">
         <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
       </span>
     </div>
     <div class="row form-group justify-content-center">
-      <span class="col-lg-2 col-md-3">
+      <span class="col-lg-3 col-md-4">
         <%= f.label "パスワード" %>
       </span>
-      <span class="col-md-4 col-sm-6">
+      <span class="col-md-4">
         <%= f.password_field :password, autocomplete: "current-password",class: "form-control" %>
       </span>
     </div>

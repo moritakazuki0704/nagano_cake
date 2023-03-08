@@ -38,6 +38,3 @@ class Public::CartItemsController < ApplicationController
   end
 
 end
-
-subtotal = 税込価格x数
-
