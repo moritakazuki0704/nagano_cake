@@ -1,14 +1,16 @@
 <div class="container">
   <div class="row my-5">
     <div class="col-auto align-self-center">
-      <h4 class="bg-secondary text-white text-center ml-lg-5 px-5 rounded">
+      <h4 class="bg text-center ml-lg-5 px-5 rounded">
         ログイン
       </h4>
     </div>
   </div>
   <div class="row">
     <div class="col-auto offset-md-1">
-      <span class="bg-secondary text-white text-center ml-lg-5 px-5 rounded">会員の方はこちらからログイン</span>
+      <span class="bg text-center ml-lg-5 px-5 rounded">
+        会員の方はこちらからログイン
+      </span>
     </div>
   </div>
   <%= form_with model: @customer,url: customer_session_path do |f| %>
