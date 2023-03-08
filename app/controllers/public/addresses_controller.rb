@@ -1,11 +1,11 @@
 class Public::AddressesController < ApplicationController
-  
+
   before_action :authenticate_customer!
   before_action :set_address,except:[:create,:index]
-  
+
   def create
     @address = Address.new(address_params)
-    @address.customer_id = current_customers.id
+    @address.customer_id = current_customer.id
     @address.save
     redirect_to addresses_path
   end
@@ -33,7 +33,7 @@ class Public::AddressesController < ApplicationController
   def address_params
     params.require(:address).permit(:address,:postal_code,:name)
   end
-  
+
   def set_address
     @address = Address.find(params[:id])
   end

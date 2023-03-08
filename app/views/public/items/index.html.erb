@@ -1,19 +1,30 @@
 <div class="container">
-  <div class="row my-3">
-    <h1 class="my-3 pl-4">商品一覧</h1>
-    <h5 class="my-3 pr-4 pt-4">（全<%= @items.count %>件）</h5>
+  <div class="row my-5">
+    <div class="col-auto align-self-center">
+      <h4 class="bg text-center ml-lg-5 px-5 rounded">
+        商品一覧
+      </h4>
+    </div>
+    <div class="col-auto align-self-end">
+      <h5 class="text-center">（全<%= @items.count %>件）</h5>
+    </div>
   </div>
   <div class="row">
     <% @items.each do |item| %>
-      <div class="card col-md-3 bg-light border-warning rounded shadow-sm p-4">
+      <div class="card col-md-3 bg-light rounded shadow-sm p-3">
         <%= link_to item_path(item.id) do %>
           <%= image_tag item.get_image(190,190),class: "card-img-top"; %>
         <% end %>
         <div class="card-body">
-          <p class="card-title"><%= item.name %></p><br>
-          <strong class="card-text">¥<%= item.with_tax_price %></strong>
+          <p class="card-title">
+            <%= link_to item_path(item.id) do %>
+              <%= item.name %>
+            <% end %>
+          </p>
+          <strong class="card-text"><%= number_to_currency(item.with_tax_price) %></strong>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+

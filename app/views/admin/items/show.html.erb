@@ -40,8 +40,8 @@
           税込価格(税抜価格)
         </p>
         <h5 class="col-md-8">
-          <%= @item.with_tax_price %>
-          (<%= @item.price %>)
+          <%= number_to_currency(@item.with_tax_price) %>
+          (<%= number_to_currency(@item.price) %>)
         </h5>
       </div>
       <div class="row justify-content-center mb-3">

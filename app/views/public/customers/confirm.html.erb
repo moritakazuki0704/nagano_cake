@@ -1,15 +1,15 @@
-<div class="container my-5 py-5">
-  <div class="row justify-content-center my-5py-5">
-    <div class="col align-self-center text-center my-5 py-5">
+<div class="container my-5">
+  <div class="row justify-content-center my-5">
+    <div class="col align-self-center text-center my-5">
       <h2 class="my-5 py-5">本当に退会しますか？</h2>
       <span class="my-5">
         退会すると、会員登録情報や<br>
         これまでの購入履歴が閲覧できなくなります。<br>
         退会する場合は、「退会する」をクリックしてください。<br>
       </span>
-      <div>
+      <div class="my-5">
         <span class="mx-2"><%= link_to "削除しない",mypage_path(@customer.id),class: "btn btn-primary" %></span>
-        <span class="mx-2"><%= link_to "削除する",withdraw_path,method: :patch,class: "btn btn-danger" %></span>
+        <span class="mx-2"><%= link_to "削除する",withdraw_path,method: :patch,"data-confirm" =>"本当によろしいですか?",class: "btn btn-danger" %></span>
       </div>
     </div>
   </div>

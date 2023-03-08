@@ -1,35 +1,25 @@
 <div class="container">
-  <div class="card mt-5 py-5 border-0 bg-light">
-    <div class="row no-gutters justify-content-center mt-5">
-      <div class="col-md-4">
-        <%= image_tag @item.get_image(300,300) %>
-      </div>
-      <div class="col-md-6">
-        <div class="card-body">
-          <h3 class="card-title">
-            <%= @item.name %>
-          </h3>
-          <p class="card-text">
-            <%= safe_join(@item.introduction.split("\n"),tag(:br)) %>
-          </p>
-          <h5 class="card-text">
-            ¥<%= @item.with_tax_price %>（税込）
-          </h5>
-          <% if customer_signed_in? %>
-            <%= form_with model: @cart_item,url: cart_items_path,method: :post do |f| %>
-              <div class="row mt-4">
-                <span class="col align-self-center">
-                  <%= f.hidden_field :item_id, :value => @item.id %>
-                  <%= f.select :amount, *[1..10] ,prompt: "個数選択",class: "form-control" %>
-                </span>
-                <span class="col align-self-center">
-                  <%= f.submit "カートに入れる",class: "btn btn-success" %>
-                </span>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+  <div class="row justify-content-center my-5 py-5">
+    <div class="col-lg text-center">
+      <%= image_tag @item.get_image(350,350) %>
+    </div>
+    <div class="col-lg">
+      <h2 class="my-3 py-3"><%= @item.name %></h2>
+      <h4 class="my-3 py-3"><%= safe_join(@item.introduction.split("\n"),tag(:br)) %></h4>
+      <h3 class="my-3 py-3"><%= number_to_currency(@item.with_tax_price) %>（税込）</h3>
+      <% if customer_signed_in? %>
+        <%= form_with model: @cart_item,url: cart_items_path,method: :post do |f| %>
+          <div class="row p-4">
+            <span class="col align-self-center form-group">
+              <%= f.hidden_field :item_id, :value => @item.id %>
+              <%= f.select :amount, *[1..10] ,prompt: "個数選択",class: "form-control" %>
+            </span>
+            <span class="col align-self-center form-group">
+              <%= f.submit "カートに入れる",class: "btn btn-success" %>
+            </span>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
