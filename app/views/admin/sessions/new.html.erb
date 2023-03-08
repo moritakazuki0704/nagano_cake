@@ -11,7 +11,7 @@
       <span class="col-lg-2 col-md-3">
         <%= f.label "メールアドレス",class: "form-label" %>
       </span>
-      <span class="col-md-6 col-sm-4">
+      <span class="col-md-4 col-sm-6">
         <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
       </span>
     </div>
@@ -19,12 +19,12 @@
       <span class="col-lg-2 col-md-3">
         <%= f.label "パスワード" %>
       </span>
-      <span class="col-md-6 col-sm-4">
+      <span class="col-md-4 col-sm-6">
         <%= f.password_field :password, autocomplete: "current-password",class: "form-control" %>
       </span>
     </div>
-    <div class="row form_group justify-content-center">
-      <span class="col-md-3 col-sm-4 actions">
+    <div class="row form_group justify-content-center mt-4">
+      <span class="col-md-3 actions">
         <%= f.submit "ログイン",class: "btn btn-primary px-5" %>
       </span>
     </div>

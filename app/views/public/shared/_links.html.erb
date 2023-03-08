@@ -1,24 +1,24 @@
 <%- if controller_name != 'sessions' %>
-  <div class="row">
-    <div class="col-5 offset-1">
-      <span class="bg-secondary text-white text-center ml-5 px-3 rounded">すでに登録済みの方</span>
+  <div class="row mt-5">
+    <div class="col-auto offset-md-1">
+      <span class="bg-secondary text-white text-center ml-lg-5 px-5 rounded">すでに登録済みの方</span>
     </div>
   </div>
   <div class="row justify-content-center mt-3">
-    <span class="col-6">
+    <span class="col-md-6">
       <%= link_to "こちら", new_session_path(resource_name),class: "border-bottom" %>　からログインしてください。
     </span>
   </div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <div class="row">
-    <div class="col-5 offset-1">
-      <span class="bg-secondary text-white text-center ml-5 px-3 rounded">会員登録がお済みでない方</span>
+  <div class="row mt-5">
+    <div class="col-auto offset-md-1">
+      <span class="bg-secondary text-white text-center ml-lg-5 px-5 rounded">会員登録がお済みでない方</span>
     </div>
   </div>
   <div class="row justify-content-center mt-3">
-    <span class="col-6">
+    <span class="col-md-6">
       <%= link_to "こちら", new_registration_path(resource_name),class: "border-bottom" %>　から新規登録を行なって下さい。
     </span>
   </div>
