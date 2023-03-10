@@ -7,4 +7,5 @@ class OrderDetail < ApplicationRecord
   def sub_total
     (price * amount).floor
   end
+  
 end

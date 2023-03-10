@@ -26,8 +26,8 @@
                 <% end %>
               </td>
               <td><%= order.customer.full_name %></td>
-              <td><%= order.order_details.amount.sum %></td>
-              <td><%= order.status %></td>
+              <td><%= order.order_details.inject(0) { |sum, order_details| sum + order_details.amount } %></td>
+              <td><%= order.status_i18n %></td>
             </tr>
           <% end %>
         </tbody>

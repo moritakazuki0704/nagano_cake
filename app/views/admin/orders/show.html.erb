@@ -2,48 +2,45 @@
   <div class="row my-5">
     <div class="col-auto align-self-center">
       <h4 class="bg text-center ml-lg-5 px-5 rounded">
-        <%= @order.customers.full_name %>さんの会員詳細
+        <%= @order.customer.full_name %>さんの会員詳細
       </h4>
     </div>
   </div>
-  <div class="row mt-2">
-    <ul class="list-group list-group-horizontal border-0">
-      <li class="list-group-item font-weight-bold">購入者</li>
-      <li class="list-group-item">
-        <%= @order.customers.name %>
-      </li>
-    </ul>
-    <ul class="list-group list-group-horizontal border-0">
-      <li class="list-group-item font-weight-bold">注文日</li>
-      <li class="list-group-item">
-        <%= @order.created_at.strftime('%Y/%m/%d') %>
-      </li>
-    </ul>
-    <ul class="list-group list-group-horizontal border-0">
-      <li class="list-group-item font-weight-bold">配送先</li>
-      <li class="list-group-item">
-        <%= @order.address_display %><br>
-        <%= @order.name %>
-      </li>
-    </ul>
-    <ul class="list-group list-group-horizontal border-0">
-      <li class="list-group-item font-weight-bold">支払方法</li>
-      <li class="list-group-item">
-        <%= @order.payment_method %>
-      </li>
-    </ul>
-    <ul class="list-group list-group-horizontal border-0">
-      <li class="list-group-item font-weight-bold">注文ステータス</li>
-      <li class="list-group-item">
-        <%= form_with model: @order,url: admin_update_status_path(@order.id),method: :patch do |f| %>
-          <%= f.select :status, options_from_collection_for_select(1,2,3,4),class: "form-control " %>
-          <%= f.submit "更新",class: "btn btn-success" %>
-        <% end %>
-      </li>
-    </ul>
-  </div>
-  <div class="row mt-2">
-    <div class="col w-75 h-25 position-relative">
+  <table class="table">
+    <tbody>
+      <tr>
+        <th class="font-weight-bold w-25">購入者</th>
+        <td><%= @order.customer.name %></td>
+      </tr>
+      <tr>
+        <th class="font-weight-bold w-25">注文日</th>
+        <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+      <tr>
+        <th class="font-weight-bold w-25">配送先</th>
+        <td><%= @order.customer.name %></td>
+      </tr>
+      <tr>
+        <th class="font-weight-bold w-25">配送先</th>
+        <td><%= @order.address_display %> <%= @order.name %></td>
+      </tr>
+      <tr>
+        <th class="font-weight-bold w-25">支払方法</th>
+        <td><%= @order.payment_method_i18n %></td>
+      </tr>
+      <tr>
+        <th class="font-weight-bold w-25">注文ステータス</th>
+        <td>
+          <%= form_with model: @order,url: admin_update_status_path(@order.id),method: :patch do |f| %>
+            <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]},class: "form-control " %>
+            <%= f.submit "更新",class: "btn btn-sm btn-success" %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row mt-2 justify-content-center">
+    <div class="col-lg-9 col-md-10">
       <table class="table">
         <thead class="thead-light">
           <tr>
@@ -58,34 +55,40 @@
         <tbody>
           <% @order_details.each do |order_detail| %>
             <tr>
-              <th><%= order_detail.item.name %></th>
-              <th><%= order_detail.price %></th>
-              <th><%= order_detail.amount %></th>
-              <th><%= order_detail.sub_total %></th>
+              <td><%= order_detail.item.name %></td>
+              <td><%= order_detail.price %></td>
+              <td><%= order_detail.amount %></td>
+              <td><%= order_detail.sub_total %></td>
               <%= form_with model: order_detail,url: admin_update_making_process_path(order_detail.id),method: :patch do |f| %>
-                <th>
-                  <%= f.select :making_status, options_from_collection_for_select(1,2,3),class: "form-control " %>
-                </th>
-                <th>
+                <td>
+                  <%= f.select :making_status,OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]},class: "form-control " %>
+                </td>
+                <td>
                   <%= f.submit "更新",class: "btn btn-success" %>
-                </th>
+                </td>
               <% end %>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
-    <div class="col w-25 h-25 justify-content-center">
-      <ul class="list-group list-group-horizontal align-bottom">
-        <li class="list-group-item">商品合計</li>
-        <li class="list-group-item"><%= @order.total_payment %></li>
-      </ul>
-      <ul class="list-group list-group-horizontal align-bottom">
-        <li class="list-group-item">送料</li>
-        <li class="list-group-item"><%= @order.postage %></li>
-      </ul>
-      <ul class="list-group list-group-horizontal align-bottom">
-        <li class="list-group-item">請求金額合計</li>
-        <li class="list-group-item"><%= @order.billing_total %></li>
-      </ul>
+    <div class="col-lg-3 col-md-6 align-self-end">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>商品合計</th>
+            <td><%= @order.total_payment %></td>
+          </tr>
+          <tr>
+            <th>送料</th>
+            <td><%= @order.postage %></td>
+          </tr>
+          <tr>
+            <th>請求金額</th>
+            <td><%= @order.billing_total %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+</div>
