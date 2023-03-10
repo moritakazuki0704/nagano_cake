@@ -10,6 +10,11 @@ class Order < ApplicationRecord
   end
 
   def address_display
-  '〒' + postal_code + ' ' + address
+    '〒' + postal_code + ' ' + address
   end
+  
+  def address_history_display
+    "〒#{postal_code}\n#{address}\n#{name}"
+  end
+  
 end

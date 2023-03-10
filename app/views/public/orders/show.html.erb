@@ -5,71 +5,71 @@
     </div>
   </div>
   <div class="row mt-3">
-    <div class="col-8">
+    <div class="col-md-8">
       <strong>注文情報</strong>
       <table class="table">
         <tbody>
           <tr>
-            <td class="bg-secondary align-middle">注文日</td>
-            <td class="align-middle"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+            <th scope="col" class="bg border border-dark pr-0 align_middle">注文日</th>
+            <td class="border border-dark pr-5 align-middle"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <tr>
-            <td class="bg-secondary align-middle">配送先</td>
-            <td class="align-middle">
+            <th scope="col" class="bg border border-dark pr-0 align-middle">配送先</th>
+            <td class="border border-dark pr-5 align-middle">
               〒<%= @order.postal_code %><br>
               <%= @order.address %><br>
               <%= @order.name %>
             </td>
           </tr>
           <tr>
-            <td class="bg-secondary align-middle">支払方法</td>
-            <td class="align-middle"><%= @order.payment_method %></td>
+            <th scope="col" class="bg border border-dark pr-0 align-middle">支払方法</th>
+            <td class="border border-dark pr-5 align-middle"><%= @order.payment_method %></td>
           </tr>
           <tr>
-            <td class="bg-secondary align-middle">ステータス</td>
-            <td class="align-middle"><%= @order.status %></td>
+            <th scope="col" class="bg border border-dark pr-0 align-middle">ステータス</th>
+            <td class="border border-dark pr-5 align-middle"><%= @order.status %></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-4">
+    <div class="col-md-4">
       <strong>請求情報</strong>
       <table class="table">
         <tbody>
           <tr>
-            <td class="bg-secondary align-middle">商品合計</td>
-            <td class="align-middle"><%= @order.total_payment %></td>
+            <th scope="col" class="bg border border-dark pr-0 align-middle">商品合計</th>
+            <td class="border border-dark pr-5 align-middle"><%= number_to_currency(@order.total_payment) %></td>
           </tr>
           <tr>
-            <td class="bg-secondary align-middle">配送料</td>
-            <td class="align-middle"><%= @order.postage %></td>
+            <th scope="col" class="bg border border-dark pr-0 align-middle">配送料</th>
+            <td class="border border-dark pr-5 align-middle"><%= number_to_currency(@order.postage) %></td>
           </tr>
           <tr>
-            <td class="bg-secondary align-middle">ご請求額</td>
-            <td class="align-middle"><%= @order.billing_total %></td>
+            <th scope="col" class="bg border border-dark pr-0 align-middle">ご請求額</th>
+            <td class="border border-dark pr-5 align-middle"><%= number_to_currency(@order.billing_total) %></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
   <div class="row mt-3">
-    <div class="col-10">
+    <div class="col-md-10">
       <table class="table">
-        <thead>
+        <thead class="thead-light">
           <tr>
-            <th>商品</th>
-            <th>単価(税込)</th>
-            <th>個数</th>
-            <th>小計</th>
+            <th scope="col" class="border border-dark align-middle">商品</th>
+            <th scope="col" class="border border-dark align-middle">単価(税込)</th>
+            <th scope="col" class="border border-dark align-middle">個数</th>
+            <th scope="col" class="border border-dark align-middle">小計</th>
           </tr>
         </thead>
         <tbody>
           <% @order_details.each do |order_detail| %>
           <tr>
-            <td><%= order_detail.item.name %></td>
-            <td><%= order_detail.price %></td>
-            <td><%= order_detail.amount %></td>
-            <td><%= order_detail.sub_total %></td>
+            <td class="border border-dark align-middle"><%= order_detail.item.name %></td>
+            <td class="border border-dark align-middle"><%= number_to_currency(order_detail.price) %></td>
+            <td class="border border-dark align-middle"><%= order_detail.amount %></td>
+            <td class="border border-dark align-middle"><%= number_to_currency(order_detail.sub_total) %></td>
           </tr>
         </tbody>
       </table>
