@@ -1,6 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+.title-image {
+  background-image: url("../../assets/images/free_cake.jpg");
+  height: 400px;
+}
 .bg {
-  background-color:#e9ecef;
+  background-color: #e9ecef;
 }

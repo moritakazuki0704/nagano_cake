@@ -7,22 +7,23 @@
     </div>
   </div>
     <%= form_with model: @order, url: comfirm_orders_path, method: :post do |f| %>
+    <%= render "public/shared/error_messages", resource: @order %>
       <div class="font-weight-bold h5">支払方法</div>
       <ul class="list-group-flush">
         <li class="list-group-item py-0 border-0 form-check">
-          <%= f.radio_button :payment_method, Order.payment_methods.key(0), class: "form-check-input" %>
+          <%= f.radio_button :payment_method, Order.payment_methods.key(0),autofocus: true, class: "form-check-input" %>
           <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card], class: "form-check-label" %>
         </li>
         <li class="list-group-item py-0 border-0 form-check">
-          <%= f.radio_button :payment_method, Order.payment_methods.key(1), class: "form-check-input" %>
+          <%= f.radio_button :payment_method, Order.payment_methods.key(1),autofocus: true, class: "form-check-input" %>
           <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer], class: "form-check-label" %>
         </li>
       </ul>
       <div class="font-weight-bold h5">配送方法</div>
       <ul class="list-group-flush">
         <li class="list-group-item py-0 border-0 form-check">
-        <%= f.radio_button :select_address, "0" , class: "form-check-input" %>
-        <%= f.label "ご自身の住所", class: "form-check-label" %>
+        <%= f.radio_button :select_address, "0" ,autofocus: true, checked: true,class: "form-check-input" %>
+        <%= f.label :order_select_address_0, "ご自身の住所", class: "form-check-label" %>
         </li>
 
           <li class="list-group-item py-0 border-0 form-check">
@@ -33,23 +34,23 @@
       </ul>
       <ul class="list-group-flush">
         <li class="list-group-item py-0 border-0 form-check">
-        <%= f.radio_button :select_address, "1" , class: "form-check-input" %>
-        <%= f.label "登録済みの住所から選択", class: "form-check-label" %>
+        <%= f.radio_button :select_address, "1" , autofocus: true,class: "form-check-input" %>
+        <%= f.label :order_select_address_1,"登録済みの住所から選択", class: "form-check-label" %>
         </li>
 
           <li class="list-group-item py-0 m-0 border-0 form-group">
-            <%= f.select :address_id, options_from_collection_for_select(@addresses, :id, :address_display),prompt: "住所選択",class: "form-control" %>
+            <%= f.select :address_id, options_from_collection_for_select(@addresses, :id, :address_display),prompt: "住所選択",autofocus: true,class: "form-control" %>
           </li>
 
       </ul>
       <ul class="list-group-flush">
         <li class="list-group-item py-0 border-0 form-check">
-          <%= f.radio_button :select_address, "2" , class: "form-check-input" %>
-          <%= f.label "新しいお届け先", class: "form-check-label" %>
+          <%= f.radio_button :select_address, "2" , autofocus: true,class: "form-check-input" %>
+          <%= f.label :order_select_address_2,"新しいお届け先", class: "form-check-label" %>
         </li>
 
           <li class="list-group-item py-0 m-0 border-0 form-group">
-            <%= f.label :"郵便番号(ハイフンなし)" %>
+            <%= f.label :postal_code,"郵便番号(ハイフンなし)" %>
           </li>
 
             <li class="list-group-item py-0 m-0 border-0 form-group">
@@ -57,7 +58,7 @@
             </li>
 
           <li class="list-group-item py-0 m-0 border-0 form-group">
-            <%= f.label :"住所" %>
+            <%= f.label :address,"住所" %>
           </li>
 
             <li class="list-group-item py-0 m-0 border-0 form-group">
@@ -65,7 +66,7 @@
             </li>
 
           <li class="list-group-item py-0 m-0 border-0 form-group">
-            <%= f.label :"宛名" %>
+            <%= f.label :name,"宛名" %>
           </li>
 
             <li class="list-group-item py-0 m-0 border-0 form-group">

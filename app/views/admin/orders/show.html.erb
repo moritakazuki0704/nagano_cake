@@ -59,7 +59,7 @@
               <td><%= order_detail.price %></td>
               <td><%= order_detail.amount %></td>
               <td><%= order_detail.sub_total %></td>
-              <%= form_with model: order_detail,url: admin_update_making_process_path(order_detail.id),method: :patch do |f| %>
+              <%= form_with(model: order_detail,url: admin_update_making_process_path(order_detail.id),method: :patch) do |f| %>
                 <td>
                   <%= f.select :making_status,OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]},class: "form-control " %>
                 </td>

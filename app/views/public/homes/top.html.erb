@@ -1,2 +1,35 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center my-5 py-5 title-image">
+    <div class="col-6 bg-white my-5 py-3">
+      <h4 class="align-middle">
+        ようこそ、ながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧はできますが、 <br>
+        購入には会員登録が必要になります。
+      </h4>
+    </div>
+  </div>
+  <h3 class="font-weight-bold">
+    新着商品
+  </h3>
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="card col-md-3 rounded shadow-sm p-3">
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_image(190,190),class: "card-img-top"; %>
+        <% end %>
+        <div class="card-body">
+          <p class="card-title">
+            <%= link_to item_path(item.id) do %>
+              <%= item.name %>
+            <% end %>
+          </p>
+          <strong class="card-text"><%= number_to_currency(item.with_tax_price) %></strong>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="row justify-content-end">
+    <%= link_to "すべての商品を見る >", items_path %>
+  </div>
+</div>

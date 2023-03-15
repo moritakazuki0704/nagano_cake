@@ -37,6 +37,6 @@ Rails.application.routes.draw do
     resources :customers,except:[:new,:create,:destroy]
     get "orders/:id" => "orders#show",as: "order"
     patch "orders/:id" => "orders#update_status",as: "update_status"
-    patch "order_datails/:id" => "orders#update_making_process",as: "update_making_process"
+    patch "order_details/:id" => "order_details#update_making_process",as: "update_making_process"
   end
 end

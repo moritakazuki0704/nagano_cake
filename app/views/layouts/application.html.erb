@@ -26,9 +26,7 @@
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
                 <li class="nav-item">
-                  <% if customer_signed_in? %>
-                    <span>ようこそ、<%= current_customer.last_name %>さん!!</span>
-                  <% end %>
+                  <span class="text-white nav-link">ようこそ、<%= current_customer.last_name %>さん!!</span>
                 </li>
                 <li class="nav-item">
                   <%= link_to(mypage_path,class: "nav-link text-white") do %>
@@ -116,8 +114,13 @@
         </div>
       </nav>
     </header>
+    <% if flash[:notice] %>
+          <h3 class="flash bg-success rounded text-center">
+            <%= flash[:notice] %>
+          </h3>
+    <% end %>
     <main>
       <%= yield %>
-    </main
+    </main>
   </body>
 </html>

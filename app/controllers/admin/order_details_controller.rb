@@ -5,7 +5,9 @@ class Admin::OrderDetailsController < ApplicationController
   def update_making_process
     @order_detail = OrderDetail.find(params[:id])
     @order_detail.update(order_detail_params)
-    redirect_to admin_order_path(Order.find(params[:id]))
+    flash[:notice] = "製作ステータスを変更しました"
+    @order = @order_detail.order
+    redirect_to admin_order_path(@order.id)
   end
 
   private

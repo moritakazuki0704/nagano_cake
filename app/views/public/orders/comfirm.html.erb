@@ -46,19 +46,23 @@
       </table>
     </div>
   </div>
-  <div class="row">
-    <ul class="list-group-flush">
-      <strong>支払方法</strong>
-      <li class="list-group-item">
-        <%= @order.payment_method_i18n %>
-      </li>
-      <strong>お届け先</strong>
-      <li class="list-group-item">
-        <%= @order.address_display %><br>
-        <%= @order.name %>
-      </li>
-    </ul>
-    </div>
+  <div class="row w-50">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="w-25"><strong>支払方法</strong></td>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <td class="w-25"><strong>お届け先</strong></td>
+          <td>
+            <%= @order.address_display %><br>
+            <%= @order.name %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
     <div class="row justify-content-center">
       <%= form_with model: @order, url: orders_path, method: :post do |f|%>
         <%= f.hidden_field :postage, :value => @postage %>

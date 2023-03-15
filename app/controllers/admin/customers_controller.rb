@@ -14,8 +14,12 @@ class Admin::CustomersController < ApplicationController
   end
 
   def update
-    @customer.update(customer_params)
-    redirect_to admin_customer_path(@customer.id)
+    if @customer.update(customer_params)
+      flash[:notice] = "会員情報を更新しました。"
+      redirect_to admin_customer_path(@customer.id)
+    else
+      render 'edit'
+    end
   end
 
   private

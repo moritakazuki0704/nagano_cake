@@ -4,10 +4,15 @@ class Public::CartItemsController < ApplicationController
   before_action :current_customer_cart,except:[:create]
 
   def create
-    cart_item = CartItem.new(cart_item_params)
-    cart_item.customer_id = current_customer.id
-    cart_item.save
-    redirect_to cart_items_path
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
+    if @cart_item.save
+      flash[:notice] = "新しい商品を追加しました。"
+      redirect_to cart_items_path
+    else
+      @item = Item.find(@cart_item.item.id)
+      render template: "public/items/show"
+    end
   end
 
   def index
@@ -17,8 +22,10 @@ class Public::CartItemsController < ApplicationController
   def update
     cart_item = @cart_items.find(params[:id])
     cart_item.customer_id = current_customer.id
-    cart_item.update(cart_item_params)
-    redirect_to cart_items_path
+    if cart_item.update(cart_item_params)
+      flash[:notice] = "個数を更新しました。"
+      redirect_to cart_items_path
+    end
   end
 
   def destroy

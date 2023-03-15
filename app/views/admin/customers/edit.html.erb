@@ -7,6 +7,7 @@
     </div>
   </div>
   <%= form_with model: @customer,url: admin_customer_path(@customer.id),method: :patch do |f| %>
+    <%= render "admin/shared/error_messages", resource: @customer %>
     <div class="row justify-content-center mb-3">
       <p class="col-lg-3 col-md-4">
         会員ID

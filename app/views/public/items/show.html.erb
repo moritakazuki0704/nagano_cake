@@ -9,6 +9,7 @@
       <h3 class="my-3 py-3"><%= number_to_currency(@item.with_tax_price) %>（税込）</h3>
       <% if customer_signed_in? %>
         <%= form_with model: @cart_item,url: cart_items_path,method: :post do |f| %>
+        <%= render "public/shared/error_messages", resource: @cart_item %>
           <div class="row p-4">
             <span class="col align-self-center form-group">
               <%= f.hidden_field :item_id, :value => @item.id %>

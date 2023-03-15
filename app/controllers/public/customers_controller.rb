@@ -10,8 +10,12 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    @customer.update(customer_params)
-    redirect_to mypage_path
+    if @customer.update(customer_params)
+      flash[:notice] = "変更内容を更新しました。"
+      redirect_to mypage_path
+    else
+      render "edit"
+    end
   end
 
   def confirm
