@@ -6,6 +6,13 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
+    @old_cart_item = CartItem.find_by(item_id: @cart_item.item_id)
+
+    if @old_cart_item.present? and @cart_item.valid?
+      @cart_item.amount += @old_cart_item.amount
+      @old_cart_item.destroy
+    end
+
     if @cart_item.save
       flash[:notice] = "新しい商品を追加しました。"
       redirect_to cart_items_path
@@ -13,6 +20,7 @@ class Public::CartItemsController < ApplicationController
       @item = Item.find(@cart_item.item.id)
       render template: "public/items/show"
     end
+
   end
 
   def index
