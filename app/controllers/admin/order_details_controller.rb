@@ -8,6 +8,15 @@ class Admin::OrderDetailsController < ApplicationController
     flash[:notice] = "製作ステータスを変更しました"
     @order = @order_detail.order
     redirect_to admin_order_path(@order.id)
+
+    if @order_detail.making_status == "making"
+      @order.update(status: 2)
+    end
+
+    if @order.order_details.count == @order.order_details.where(making_status: 3).count
+      @order.update(status: 3)
+    end
+
   end
 
   private
