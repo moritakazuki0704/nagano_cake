@@ -18,11 +18,10 @@
       </tr>
       <tr>
         <th class="font-weight-bold w-25">配送先</th>
-        <td><%= @order.customer.name %></td>
-      </tr>
-      <tr>
-        <th class="font-weight-bold w-25">配送先</th>
-        <td><%= @order.address_display %> <%= @order.name %></td>
+        <td>
+          <%= @order.address_display %><br>
+          <%= @order.name %>
+        </td>
       </tr>
       <tr>
         <th class="font-weight-bold w-25">支払方法</th>
@@ -77,15 +76,15 @@
         <tbody>
           <tr>
             <th>商品合計</th>
-            <td><%= @order.total_payment %></td>
+            <td><%= number_to_currency(@total) %></td>
           </tr>
           <tr>
             <th>送料</th>
-            <td><%= @order.postage %></td>
+            <td><%= number_to_currency(@order.postage) %></td>
           </tr>
           <tr>
             <th>請求金額</th>
-            <td><%= @order.billing_total %></td>
+            <td><%= number_to_currency(@order.total_payment) %></td>
           </tr>
         </tbody>
       </table>
